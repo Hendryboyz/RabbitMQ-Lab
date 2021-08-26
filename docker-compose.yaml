@@ -1,0 +1,17 @@
+version: '3'
+services:
+  rabbitmq:
+    container_name: 'rabbitmq'
+    image: 'bitnami/rabbitmq:3.8.5'
+    environment:
+      - RABBITMQ_USERNAME=user # default
+      - RABBITMQ_PASSWORD=bitnami # default
+      - RABBITMQ_PLUGINS=rabbitmq_prometheus,rabbitmq_management,rabbitmq_management_agent,rabbitmq_web_dispatch
+    ports:
+      - '5672:5672'
+      - "15672:15672"
+    volumes:
+      - 'rabbitmq_data:/bitnami'
+volumes:
+  rabbitmq_data:
+    driver: local
